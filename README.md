@@ -66,7 +66,7 @@ password: password123
 
 Public / demo Supabase keys (for grading)
 - The project may include demo Supabase URL and anon key in the repo’s `.env` for grading. If you prefer to use your own Supabase project, create a new project and set these in `.env`:
-
+- This should be in the backend directory
 ```
 # ==============================
 # SERVER CONFIG
