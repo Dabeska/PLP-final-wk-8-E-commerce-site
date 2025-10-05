@@ -92,8 +92,6 @@ JWT_EXPIRES_IN=7d
 CORS_ORIGIN=http://localhost:5173   # Your React frontend origin
 ```
 
-Do not commit sensitive secrets to version control.
-
 ---
 
 ## Database (optional — using your own Supabase)
