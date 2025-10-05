@@ -11,20 +11,20 @@ export interface User {
 export interface Category {
   id: string;
   name: string;
-  slug: string;
+  slug?: string;
   description?: string;
 }
 
 export interface Product {
   id: string;
   name: string;
-  slug: string;
   description: string;
   price: number;
+  stock?: number;
   imageUrl?: string;
   categoryId?: string;
   category?: Category;
-  status?: string;
+  status?: Status;
 }
 
 export interface OrderItem {

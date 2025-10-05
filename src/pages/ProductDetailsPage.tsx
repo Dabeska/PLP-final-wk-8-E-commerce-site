@@ -16,8 +16,8 @@ const ProductDetailsPage = () => {
     if (!productId) return;
     const fetchProduct = async () => {
       try {
-        const data = await ProductsApi.get(productId);
-        setProduct(data.product ?? data);
+        const fetchedProduct = await ProductsApi.get(productId);
+        setProduct(fetchedProduct);
       } catch (err) {
         setError('Unable to load product.');
       } finally {
@@ -43,14 +43,12 @@ const ProductDetailsPage = () => {
     );
   }
 
+  const imageSrc = product.imageUrl ?? 'https://via.placeholder.com/600x600?text=Product';
+
   return (
     <div className="grid gap-10 lg:grid-cols-2">
       <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
-        {product.imageUrl ? (
-          <img src={product.imageUrl} alt={product.name} className="h-full w-full object-cover" />
-        ) : (
-          <div className="flex aspect-square items-center justify-center text-slate-400">Image coming soon</div>
-        )}
+        <img src={imageSrc} alt={product.name} className="h-full w-full object-cover" />
       </div>
       <div className="space-y-6">
         <div>

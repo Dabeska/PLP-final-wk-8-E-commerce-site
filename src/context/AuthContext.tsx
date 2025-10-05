@@ -26,6 +26,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(() => localStorage.getItem('token'));
   const [loading, setLoading] = useState<boolean>(!!localStorage.getItem('token'));
 
+  const logout = useCallback(() => {
+    localStorage.removeItem('token');
+    setToken(null);
+    setUser(null);
+  }, []);
+
   useEffect(() => {
     const initialize = async () => {
       if (!token) {
@@ -34,8 +40,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       try {
-        const data = await AuthApi.me();
-        setUser(data.user);
+        const currentUser = await AuthApi.me();
+        setUser(currentUser);
       } catch (error) {
         console.error('Failed to fetch current user', error);
         logout();
@@ -45,7 +51,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     void initialize();
-  }, [token]);
+  }, [token, logout]);
 
   const handleAuthSuccess = useCallback((receivedToken: string, receivedUser: User) => {
     localStorage.setItem('token', receivedToken);
@@ -53,24 +59,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(receivedUser);
   }, []);
 
-  const login = useCallback(async (email: string, password: string) => {
-    const data = await AuthApi.login(email, password);
-    handleAuthSuccess(data.token, data.user);
-  }, [handleAuthSuccess]);
-
-  const register = useCallback(
-    async (fullName: string, email: string, password: string) => {
-      const data = await AuthApi.register(fullName, email, password);
-      handleAuthSuccess(data.token, data.user);
+  const login = useCallback(
+    async (email: string, password: string) => {
+      const { token: authToken, user: authUser } = await AuthApi.login(email, password);
+      handleAuthSuccess(authToken, authUser);
     },
     [handleAuthSuccess]
   );
 
-  const logout = useCallback(() => {
-    localStorage.removeItem('token');
-    setToken(null);
-    setUser(null);
-  }, []);
+  const register = useCallback(
+    async (fullName: string, email: string, password: string) => {
+      const { token: authToken, user: authUser } = await AuthApi.register(fullName, email, password);
+      handleAuthSuccess(authToken, authUser);
+    },
+    [handleAuthSuccess]
+  );
 
   const hasRole = useCallback(
     (role?: Role) => {
