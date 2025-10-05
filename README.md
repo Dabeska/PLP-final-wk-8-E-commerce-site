@@ -46,7 +46,7 @@ Backend runs at: http://localhost:5000
 
 Frontend
 ```bash
-cd frontend
+cd ..
 npm install
 npm run dev
 ```
@@ -60,18 +60,36 @@ Open two terminals: one for backend and one for frontend.
 
 Admin (pre-seeded)
 ```
-email: admin@example.com
-password: Admin123!
+email: admin@shopsphere.com
+password: password123
 ```
 
 Public / demo Supabase keys (for grading)
 - The project may include demo Supabase URL and anon key in the repo’s `.env` for grading. If you prefer to use your own Supabase project, create a new project and set these in `.env`:
 
 ```
-REACT_APP_SUPABASE_URL=https://<your-supabase-url>
-REACT_APP_SUPABASE_ANON_KEY=<your-anon-key>
-JWT_SECRET=<your-jwt-secret>
-JWT_EXPIRES_IN=7d
+# ==============================
+# SERVER CONFIG
+# ==============================
+PORT=5000                # Port the backend runs on
+NODE_ENV=development     # or production
+
+# ==============================
+# SUPABASE CONFIG
+# ==============================
+REACT_APP_SUPABASE_URL=https://tbirjjeisekbwowsbcky.supabase.co
+REACT_APP_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRiaXJqamVpc2VrYndvd3NiY2t5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk2NTU0NDcsImV4cCI6MjA3NTIzMTQ0N30.tZTv6wwcExOu_kUoX4NHmwa_aw5LtnFiMTqEKA19GtM
+
+# ==============================
+# AUTH CONFIG
+# ==============================
+JWT_SECRET=4wo9h+HHyn2jee4zPh+LJ0nqkCO0aUVld2+F5u9E+oOgcsxG1Ka2VUWdDCM+ruhi3I/NKnMsc+m+EIHy506Eog==
+JWT_EXPIRES_IN=7d             
+
+# ==============================
+# SECURITY 
+# ==============================
+CORS_ORIGIN=http://localhost:5173   # Your React frontend origin
 ```
 
 Do not commit sensitive secrets to version control.
