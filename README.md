@@ -154,5 +154,3 @@ Statuses
 - Start frontend: cd frontend → npm run dev (http://localhost:5173)
 
 ---
-
-If you want a trimmed README or a badge/header added, tell me which badges or extra sections to include.
