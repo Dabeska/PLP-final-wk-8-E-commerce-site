@@ -1,7 +1,5 @@
 # PLP-final-wk-8-E-commerce-site
 
-# PLP-final-wk-8-E-commerce-site
-
 A simple E‑commerce Store application.
 
 Tech stack
@@ -32,8 +30,8 @@ Tech stack
 
 Clone the repo:
 ```bash
-git clone <your-repo-url>
-cd ecommerce-store
+git clone https://github.com/Dabeska/PLP-final-wk-8-E-commerce-site.git
+cd PLP-final-wk-8-E-commerce-site
 ```
 
 Backend
@@ -156,5 +154,3 @@ Statuses
 - Start frontend: cd frontend → npm run dev (http://localhost:5173)
 
 ---
-
-If you want a trimmed README or a badge/header added, tell me which badges or extra sections to include.
