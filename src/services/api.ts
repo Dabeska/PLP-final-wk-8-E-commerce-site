@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { Category, Order, OrderItem, Product, Status, User } from '../types';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000',
+  baseURL: 'https://commerce-backend-theta.vercel.app',
   withCredentials: true
 });
 
