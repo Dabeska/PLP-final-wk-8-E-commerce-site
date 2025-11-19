@@ -103,7 +103,14 @@ const ProfilePage = () => {
     const fetchOrders = async () => {
       try {
         const data = await OrdersApi.list();
-        setOrders(data.orders ?? data);
+        // Normalize response: OrdersApi.list may return Order[] or { orders: Order[] }.
+        if (Array.isArray(data)) {
+          setOrders(data);
+        } else if ((data as any)?.orders && Array.isArray((data as any).orders)) {
+          setOrders((data as any).orders);
+        } else {
+          setOrders([]);
+        }
       } catch (err) {
         setError('Unable to load your orders at the moment. Please try again later.');
       } finally {
